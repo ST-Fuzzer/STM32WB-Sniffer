@@ -1,0 +1,461 @@
+{
+  "name": "802_15_4_Sniffer",
+  "source_ide": "STM32CubeIDE",
+  "path": "/home/atta/STM32WB-Sniffer/firmware/Projects/P-NUCLEO-WB55.Nucleo/Applications/Mac_802_15_4/802_15_4_Sniffer/STM32CubeIDE",
+  "languages": [
+      "C"
+  ],
+  "configurations": [
+    {
+      "name": "Debug",
+      "output_filename": "802_15_4_Sniffer",
+      "type": "Executable",
+      "toolchain_type": "GCC",
+      "toolchain_prefix": "arm-none-eabi-",
+      "mcu": "STM32WB55RGVx",
+      "board": "genericBoard",
+      "sources": [
+        { "path": "Application/User/Core/Startup/startup_stm32wb55rgvx.s" },
+        { "path": "../Core/Src/app_entry.c" },
+        { "path": "../Core/Src/hw_timerserver.c" },
+        { "path": "../Core/Src/hw_uart.c" },
+        { "path": "../Core/Src/main.c" },
+        { "path": "../Core/Src/stm32_lpm_if.c" },
+        { "path": "../Core/Src/stm32wbxx_hal_msp.c" },
+        { "path": "../Core/Src/stm32wbxx_it.c" },
+        { "path": "../Core/Src/stm_logging.c" },
+        { "path": "Application/User/Core/src/syscalls.c" },
+        { "path": "Application/User/Core/src/sysmem.c" },
+        { "path": "../Core/Src/system_stm32wbxx.c" },
+        { "path": "../STM32_WPAN/App/app_mac_802_15_4.c" },
+        { "path": "../STM32_WPAN/App/app_mac_802_15_4_process.c" },
+        { "path": "../STM32_WPAN/App/tl_dbg_conf.h" },
+        { "path": "../STM32_WPAN/Target/hw_ipcc.c" },
+        { "path": "../readme.txt" },
+        { "path": "../../../../../../Drivers/BSP/P-NUCLEO-WB55.Nucleo/stm32wbxx_nucleo.c" },
+        { "path": "../../../../../../Drivers/STM32WBxx_HAL_Driver/Src/stm32wbxx_hal.c" },
+        { "path": "../../../../../../Drivers/STM32WBxx_HAL_Driver/Src/stm32wbxx_hal_adc.c" },
+        { "path": "../../../../../../Drivers/STM32WBxx_HAL_Driver/Src/stm32wbxx_hal_adc_ex.c" },
+        { "path": "../../../../../../Drivers/STM32WBxx_HAL_Driver/Src/stm32wbxx_hal_cortex.c" },
+        { "path": "../../../../../../Drivers/STM32WBxx_HAL_Driver/Src/stm32wbxx_hal_dma.c" },
+        { "path": "../../../../../../Drivers/STM32WBxx_HAL_Driver/Src/stm32wbxx_hal_exti.c" },
+        { "path": "../../../../../../Drivers/STM32WBxx_HAL_Driver/Src/stm32wbxx_hal_flash.c" },
+        { "path": "../../../../../../Drivers/STM32WBxx_HAL_Driver/Src/stm32wbxx_hal_flash_ex.c" },
+        { "path": "../../../../../../Drivers/STM32WBxx_HAL_Driver/Src/stm32wbxx_hal_gpio.c" },
+        { "path": "../../../../../../Drivers/STM32WBxx_HAL_Driver/Src/stm32wbxx_hal_ipcc.c" },
+        { "path": "../../../../../../Drivers/STM32WBxx_HAL_Driver/Src/stm32wbxx_hal_pwr.c" },
+        { "path": "../../../../../../Drivers/STM32WBxx_HAL_Driver/Src/stm32wbxx_hal_pwr_ex.c" },
+        { "path": "../../../../../../Drivers/STM32WBxx_HAL_Driver/Src/stm32wbxx_hal_rcc.c" },
+        { "path": "../../../../../../Drivers/STM32WBxx_HAL_Driver/Src/stm32wbxx_hal_rcc_ex.c" },
+        { "path": "../../../../../../Drivers/STM32WBxx_HAL_Driver/Src/stm32wbxx_hal_rtc.c" },
+        { "path": "../../../../../../Drivers/STM32WBxx_HAL_Driver/Src/stm32wbxx_hal_rtc_ex.c" },
+        { "path": "../../../../../../Drivers/STM32WBxx_HAL_Driver/Src/stm32wbxx_hal_uart.c" },
+        { "path": "../../../../../../Drivers/STM32WBxx_HAL_Driver/Src/stm32wbxx_hal_uart_ex.c" },
+        { "path": "../../../../../../Middlewares/ST/STM32_WPAN/interface/patterns/ble_thread/shci/shci.c" },
+        { "path": "../../../../../../Middlewares/ST/STM32_WPAN/interface/patterns/ble_thread/tl/shci_tl.c" },
+        { "path": "../../../../../../Middlewares/ST/STM32_WPAN/interface/patterns/ble_thread/tl/shci_tl_if.c" },
+        { "path": "../../../../../../Middlewares/ST/STM32_WPAN/interface/patterns/ble_thread/tl/tl_mbox.c" },
+        { "path": "../../../../../../Middlewares/ST/STM32_WPAN/mac_802_15_4/core/inc/802_15_4_mac_config.h" },
+        { "path": "../../../../../../Middlewares/ST/STM32_WPAN/mac_802_15_4/core/inc/802_15_4_mac_core.h" },
+        { "path": "../../../../../../Middlewares/ST/STM32_WPAN/mac_802_15_4/core/inc/802_15_4_mac_errors.h" },
+        { "path": "../../../../../../Middlewares/ST/STM32_WPAN/mac_802_15_4/core/inc/802_15_4_mac_sap.h" },
+        { "path": "../../../../../../Middlewares/ST/STM32_WPAN/mac_802_15_4/core/inc/802_15_4_mac_types.h" },
+        { "path": "../../../../../../Middlewares/ST/STM32_WPAN/mac_802_15_4/core/src/mac_802_15_4_core_wb.c" },
+        { "path": "../../../../../../Middlewares/ST/STM32_WPAN/utilities/dbg_trace.c" },
+        { "path": "../../../../../../Middlewares/ST/STM32_WPAN/utilities/otp.c" },
+        { "path": "../../../../../../Middlewares/ST/STM32_WPAN/utilities/stm_list.c" },
+        { "path": "../../../../../../Middlewares/ST/STM32_WPAN/utilities/stm_queue.c" },
+        { "path": "../../../../../../Utilities/lpm/tiny_lpm/stm32_lpm.c" },
+        { "path": "../../../../../../Utilities/sequencer/stm32_seq.c" }
+      ],
+      "tools": [
+            {
+              "type": "c_assembler",
+              "options": {
+                      "option.debuglevel": "-g3",
+                      "option.preprocessassembler": "-x assembler-with-cpp"
+              },
+              "flags": [
+                  "-mfpu=fpv4-sp-d16",
+                  "-mfloat-abi=hard",
+                  "-mthumb",
+                  "--specs=nano.specs",
+                  "-mcpu=cortex-m4",
+                  "-g3",
+                  "-x",
+                  "assembler-with-cpp"
+              ]
+            },
+            {
+              "type": "c_compiler",
+              "options": {
+                      "option.languagestandard": "-std=gnu11",
+                      "option.debuglevel": "-g3",
+                      "option.definedsymbols": "-DUSE_HAL_DRIVER, -DUSE_STM32WBXX_NUCLEO, -DMAC_802_15_4_WB, -DCORE_CM4, -DDEBUG, -DSTM32WB55xx",
+                      "option.includepaths": "-I../../Core/Inc, -I../../../../../../../Utilities/lpm/tiny_lpm, -I../../../../../../../Middlewares/ST/STM32_WPAN/interface/patterns/ble_thread/shci, -I../../../../../../../Utilities/sequencer, -I../../../../../../../Drivers/CMSIS/Device/ST/STM32WBxx/Include, -I../../../../../../../Middlewares/ST/STM32_WPAN/interface/patterns/ble_thread, -I../../../../../../../Middlewares/ST/STM32_WPAN/interface/patterns/ble_thread/tl, -I../../../../../../../Middlewares/ST/STM32_WPAN/mac_802_15_4/core/inc, -I../../STM32_WPAN/App, -I../../../../../../../Middlewares/ST/STM32_WPAN, -I../../../../../../../Drivers/BSP/P-NUCLEO-WB55.Nucleo, -I../../STM32_WPAN/Target, -I../../../../../../../Drivers/STM32WBxx_HAL_Driver/Inc, -I../../../../../../../Middlewares/ST/STM32_WPAN/utilities, -I../../../../../../../Drivers/CMSIS/Include",
+                      "option.optimization.level": "-O0",
+                      "option.ffunction": "-ffunction-sections",
+                      "option.fdata": "-fdata-sections",
+                      "option.warnings.all": "-Wall",
+                      "option.fstackusage": "-fstack-usage",
+                      "option.cyclomaticcomplexity": "-fcyclomatic-complexity"
+              },
+              "flags": [
+                  "-mfpu=fpv4-sp-d16",
+                  "-mfloat-abi=hard",
+                  "-mthumb",
+                  "--specs=nano.specs",
+                  "-mcpu=cortex-m4",
+                  "-std=gnu11",
+                  "-g3",
+                  "-DUSE_HAL_DRIVER",
+                  "-DUSE_STM32WBXX_NUCLEO",
+                  "-DMAC_802_15_4_WB",
+                  "-DCORE_CM4",
+                  "-DDEBUG",
+                  "-DSTM32WB55xx",
+                  "-I../../Core/Inc",
+                  "-I../../../../../../../Utilities/lpm/tiny_lpm",
+                  "-I../../../../../../../Middlewares/ST/STM32_WPAN/interface/patterns/ble_thread/shci",
+                  "-I../../../../../../../Utilities/sequencer",
+                  "-I../../../../../../../Drivers/CMSIS/Device/ST/STM32WBxx/Include",
+                  "-I../../../../../../../Middlewares/ST/STM32_WPAN/interface/patterns/ble_thread",
+                  "-I../../../../../../../Middlewares/ST/STM32_WPAN/interface/patterns/ble_thread/tl",
+                  "-I../../../../../../../Middlewares/ST/STM32_WPAN/mac_802_15_4/core/inc",
+                  "-I../../STM32_WPAN/App",
+                  "-I../../../../../../../Middlewares/ST/STM32_WPAN",
+                  "-I../../../../../../../Drivers/BSP/P-NUCLEO-WB55.Nucleo",
+                  "-I../../STM32_WPAN/Target",
+                  "-I../../../../../../../Drivers/STM32WBxx_HAL_Driver/Inc",
+                  "-I../../../../../../../Middlewares/ST/STM32_WPAN/utilities",
+                  "-I../../../../../../../Drivers/CMSIS/Include",
+                  "-O0",
+                  "-ffunction-sections",
+                  "-fdata-sections",
+                  "-Wall",
+                  "-fstack-usage",
+                  "-fcyclomatic-complexity"
+              ]
+            },
+            {
+              "type": "cpp_compiler",
+              "options": {
+                      "option.languagestandard": "-std=gnu++14",
+                      "option.debuglevel": "-g3",
+                      "option.optimization.level": "-O0",
+                      "option.ffunction": "-ffunction-sections",
+                      "option.fdata": "-fdata-sections",
+                      "option.noexceptions": "-fno-exceptions",
+                      "option.nortti": "-fno-rtti",
+                      "option.nousecxaatexit": "-fno-use-cxa-atexit",
+                      "option.warnings.all": "-Wall",
+                      "option.fstackusage": "-fstack-usage",
+                      "option.cyclomaticcomplexity": "-fcyclomatic-complexity"
+              },
+              "flags": [
+                  "-mfpu=fpv4-sp-d16",
+                  "-mfloat-abi=hard",
+                  "-mthumb",
+                  "--specs=nano.specs",
+                  "-mcpu=cortex-m4",
+                  "-std=gnu++14",
+                  "-g3",
+                  "-O0",
+                  "-ffunction-sections",
+                  "-fdata-sections",
+                  "-fno-exceptions",
+                  "-fno-rtti",
+                  "-fno-use-cxa-atexit",
+                  "-Wall",
+                  "-fstack-usage",
+                  "-fcyclomatic-complexity"
+              ]
+            },
+            {
+              "type": "c_linker",
+              "options": {
+                      "option.script": "-T\"/home/atta/STM32WB-Sniffer/firmware/Projects/P-NUCLEO-WB55.Nucleo/Applications/Mac_802_15_4/802_15_4_Sniffer/STM32CubeIDE/STM32WB55RGVX_FLASH.ld\"",
+                      "option.systemcalls": "--specs=nosys.specs",
+                      "option.map": "-Wl,-Map=\"802_15_4_Sniffer.map\"",
+                      "option.gcsections": "-Wl,--gc-sections",
+                      "option.static": "-static",
+                      "option.generate.secure.lib": "-Wl,--cmse-implib -Wl,--out-implib=./secure_nsclib.o",
+                      "option.libmath": "-Wl,--start-group -lc -lm -Wl,--end-group"
+              },
+              "flags": [
+                  "-mfpu=fpv4-sp-d16",
+                  "-mfloat-abi=hard",
+                  "-mthumb",
+                  "--specs=nano.specs",
+                  "-mcpu=cortex-m4",
+                  "-T\"/home/atta/STM32WB-Sniffer/firmware/Projects/P-NUCLEO-WB55.Nucleo/Applications/Mac_802_15_4/802_15_4_Sniffer/STM32CubeIDE/STM32WB55RGVX_FLASH.ld\"",
+                  "--specs=nosys.specs",
+                  "-Wl,-Map=\"802_15_4_Sniffer.map\"",
+                  "-Wl,--gc-sections",
+                  "-static"
+              ]
+            },
+            {
+              "type": "cpp_linker",
+              "options": {
+                      "option.script": "-T\"/home/atta/STM32WB-Sniffer/firmware/Projects/P-NUCLEO-WB55.Nucleo/Applications/Mac_802_15_4/802_15_4_Sniffer/STM32CubeIDE/STM32WB55RGVX_FLASH.ld\"",
+                      "option.systemcalls": "--specs=nosys.specs",
+                      "option.map": "-Wl,-Map=\"802_15_4_Sniffer.map\"",
+                      "option.gcsections": "-Wl,--gc-sections",
+                      "option.static": "-static",
+                      "option.generate.secure.lib": "-Wl,--cmse-implib -Wl,--out-implib=./secure_nsclib.o",
+                      "option.libmath": "-Wl,--start-group -lc -lm -lstdc++ -lsupc++ -Wl,--end-group"
+              },
+              "flags": [
+                  "-mfpu=fpv4-sp-d16",
+                  "-mfloat-abi=hard",
+                  "-mthumb",
+                  "--specs=nano.specs",
+                  "-mcpu=cortex-m4",
+                  "-T\"/home/atta/STM32WB-Sniffer/firmware/Projects/P-NUCLEO-WB55.Nucleo/Applications/Mac_802_15_4/802_15_4_Sniffer/STM32CubeIDE/STM32WB55RGVX_FLASH.ld\"",
+                  "--specs=nosys.specs",
+                  "-Wl,-Map=\"802_15_4_Sniffer.map\"",
+                  "-Wl,--gc-sections",
+                  "-static"
+              ]
+            },
+            {
+              "type": "c_archiver",
+              "options": {
+                      "option.replace": "-r"
+              },
+              "flags": [
+                  "-mfpu=fpv4-sp-d16",
+                  "-mfloat-abi=hard",
+                  "-mthumb",
+                  "--specs=nano.specs",
+                  "-mcpu=cortex-m4",
+                  "-r"
+              ]
+            }
+        ]
+    },
+    {
+      "name": "Release",
+      "output_filename": "802_15_4_Sniffer",
+      "type": "Executable",
+      "toolchain_type": "GCC",
+      "toolchain_prefix": "arm-none-eabi-",
+      "mcu": "STM32WB55RGVx",
+      "board": "genericBoard",
+      "sources": [
+        { "path": "Application/User/Core/Startup/startup_stm32wb55rgvx.s" },
+        { "path": "../Core/Src/app_entry.c" },
+        { "path": "../Core/Src/hw_timerserver.c" },
+        { "path": "../Core/Src/hw_uart.c" },
+        { "path": "../Core/Src/main.c" },
+        { "path": "../Core/Src/stm32_lpm_if.c" },
+        { "path": "../Core/Src/stm32wbxx_hal_msp.c" },
+        { "path": "../Core/Src/stm32wbxx_it.c" },
+        { "path": "../Core/Src/stm_logging.c" },
+        { "path": "Application/User/Core/src/syscalls.c" },
+        { "path": "Application/User/Core/src/sysmem.c" },
+        { "path": "../Core/Src/system_stm32wbxx.c" },
+        { "path": "../STM32_WPAN/App/app_mac_802_15_4.c" },
+        { "path": "../STM32_WPAN/App/app_mac_802_15_4_process.c" },
+        { "path": "../STM32_WPAN/App/tl_dbg_conf.h" },
+        { "path": "../STM32_WPAN/Target/hw_ipcc.c" },
+        { "path": "../readme.txt" },
+        { "path": "../../../../../../Drivers/BSP/P-NUCLEO-WB55.Nucleo/stm32wbxx_nucleo.c" },
+        { "path": "../../../../../../Drivers/STM32WBxx_HAL_Driver/Src/stm32wbxx_hal.c" },
+        { "path": "../../../../../../Drivers/STM32WBxx_HAL_Driver/Src/stm32wbxx_hal_adc.c" },
+        { "path": "../../../../../../Drivers/STM32WBxx_HAL_Driver/Src/stm32wbxx_hal_adc_ex.c" },
+        { "path": "../../../../../../Drivers/STM32WBxx_HAL_Driver/Src/stm32wbxx_hal_cortex.c" },
+        { "path": "../../../../../../Drivers/STM32WBxx_HAL_Driver/Src/stm32wbxx_hal_dma.c" },
+        { "path": "../../../../../../Drivers/STM32WBxx_HAL_Driver/Src/stm32wbxx_hal_exti.c" },
+        { "path": "../../../../../../Drivers/STM32WBxx_HAL_Driver/Src/stm32wbxx_hal_flash.c" },
+        { "path": "../../../../../../Drivers/STM32WBxx_HAL_Driver/Src/stm32wbxx_hal_flash_ex.c" },
+        { "path": "../../../../../../Drivers/STM32WBxx_HAL_Driver/Src/stm32wbxx_hal_gpio.c" },
+        { "path": "../../../../../../Drivers/STM32WBxx_HAL_Driver/Src/stm32wbxx_hal_ipcc.c" },
+        { "path": "../../../../../../Drivers/STM32WBxx_HAL_Driver/Src/stm32wbxx_hal_pwr.c" },
+        { "path": "../../../../../../Drivers/STM32WBxx_HAL_Driver/Src/stm32wbxx_hal_pwr_ex.c" },
+        { "path": "../../../../../../Drivers/STM32WBxx_HAL_Driver/Src/stm32wbxx_hal_rcc.c" },
+        { "path": "../../../../../../Drivers/STM32WBxx_HAL_Driver/Src/stm32wbxx_hal_rcc_ex.c" },
+        { "path": "../../../../../../Drivers/STM32WBxx_HAL_Driver/Src/stm32wbxx_hal_rtc.c" },
+        { "path": "../../../../../../Drivers/STM32WBxx_HAL_Driver/Src/stm32wbxx_hal_rtc_ex.c" },
+        { "path": "../../../../../../Drivers/STM32WBxx_HAL_Driver/Src/stm32wbxx_hal_uart.c" },
+        { "path": "../../../../../../Drivers/STM32WBxx_HAL_Driver/Src/stm32wbxx_hal_uart_ex.c" },
+        { "path": "../../../../../../Middlewares/ST/STM32_WPAN/interface/patterns/ble_thread/shci/shci.c" },
+        { "path": "../../../../../../Middlewares/ST/STM32_WPAN/interface/patterns/ble_thread/tl/shci_tl.c" },
+        { "path": "../../../../../../Middlewares/ST/STM32_WPAN/interface/patterns/ble_thread/tl/shci_tl_if.c" },
+        { "path": "../../../../../../Middlewares/ST/STM32_WPAN/interface/patterns/ble_thread/tl/tl_mbox.c" },
+        { "path": "../../../../../../Middlewares/ST/STM32_WPAN/mac_802_15_4/core/inc/802_15_4_mac_config.h" },
+        { "path": "../../../../../../Middlewares/ST/STM32_WPAN/mac_802_15_4/core/inc/802_15_4_mac_core.h" },
+        { "path": "../../../../../../Middlewares/ST/STM32_WPAN/mac_802_15_4/core/inc/802_15_4_mac_errors.h" },
+        { "path": "../../../../../../Middlewares/ST/STM32_WPAN/mac_802_15_4/core/inc/802_15_4_mac_sap.h" },
+        { "path": "../../../../../../Middlewares/ST/STM32_WPAN/mac_802_15_4/core/inc/802_15_4_mac_types.h" },
+        { "path": "../../../../../../Middlewares/ST/STM32_WPAN/mac_802_15_4/core/src/mac_802_15_4_core_wb.c" },
+        { "path": "../../../../../../Middlewares/ST/STM32_WPAN/utilities/dbg_trace.c" },
+        { "path": "../../../../../../Middlewares/ST/STM32_WPAN/utilities/otp.c" },
+        { "path": "../../../../../../Middlewares/ST/STM32_WPAN/utilities/stm_list.c" },
+        { "path": "../../../../../../Middlewares/ST/STM32_WPAN/utilities/stm_queue.c" },
+        { "path": "../../../../../../Utilities/lpm/tiny_lpm/stm32_lpm.c" },
+        { "path": "../../../../../../Utilities/sequencer/stm32_seq.c" }
+      ],
+      "tools": [
+            {
+              "type": "c_assembler",
+              "options": {
+                      "option.preprocessassembler": "-x assembler-with-cpp"
+              },
+              "flags": [
+                  "-mfpu=fpv4-sp-d16",
+                  "-mfloat-abi=hard",
+                  "-mthumb",
+                  "--specs=nano.specs",
+                  "-mcpu=cortex-m4",
+                  "-x",
+                  "assembler-with-cpp"
+              ]
+            },
+            {
+              "type": "c_compiler",
+              "options": {
+                      "option.languagestandard": "-std=gnu11",
+                      "option.definedsymbols": "-DUSE_HAL_DRIVER, -DUSE_STM32WBXX_NUCLEO, -DMAC_802_15_4_WB, -DCORE_CM4, -DSTM32WB55xx",
+                      "option.includepaths": "-I../../Core/Inc, -I../../../../../../../Utilities/lpm/tiny_lpm, -I../../../../../../../Middlewares/ST/STM32_WPAN/interface/patterns/ble_thread/shci, -I../../../../../../../Utilities/sequencer, -I../../../../../../../Drivers/CMSIS/Device/ST/STM32WBxx/Include, -I../../../../../../../Middlewares/ST/STM32_WPAN/interface/patterns/ble_thread, -I../../../../../../../Middlewares/ST/STM32_WPAN/interface/patterns/ble_thread/tl, -I../../../../../../../Middlewares/ST/STM32_WPAN/mac_802_15_4/core/inc, -I../../STM32_WPAN/App, -I../../../../../../../Middlewares/ST/STM32_WPAN, -I../../../../../../../Drivers/BSP/P-NUCLEO-WB55.Nucleo, -I../../STM32_WPAN/Target, -I../../../../../../../Drivers/STM32WBxx_HAL_Driver/Inc, -I../../../../../../../Middlewares/ST/STM32_WPAN/utilities, -I../../../../../../../Drivers/CMSIS/Include",
+                      "option.optimization.level": "-Os",
+                      "option.ffunction": "-ffunction-sections",
+                      "option.fdata": "-fdata-sections",
+                      "option.warnings.all": "-Wall",
+                      "option.fstackusage": "-fstack-usage",
+                      "option.cyclomaticcomplexity": "-fcyclomatic-complexity"
+              },
+              "flags": [
+                  "-mfpu=fpv4-sp-d16",
+                  "-mfloat-abi=hard",
+                  "-mthumb",
+                  "--specs=nano.specs",
+                  "-mcpu=cortex-m4",
+                  "-std=gnu11",
+                  "-DUSE_HAL_DRIVER",
+                  "-DUSE_STM32WBXX_NUCLEO",
+                  "-DMAC_802_15_4_WB",
+                  "-DCORE_CM4",
+                  "-DSTM32WB55xx",
+                  "-I../../Core/Inc",
+                  "-I../../../../../../../Utilities/lpm/tiny_lpm",
+                  "-I../../../../../../../Middlewares/ST/STM32_WPAN/interface/patterns/ble_thread/shci",
+                  "-I../../../../../../../Utilities/sequencer",
+                  "-I../../../../../../../Drivers/CMSIS/Device/ST/STM32WBxx/Include",
+                  "-I../../../../../../../Middlewares/ST/STM32_WPAN/interface/patterns/ble_thread",
+                  "-I../../../../../../../Middlewares/ST/STM32_WPAN/interface/patterns/ble_thread/tl",
+                  "-I../../../../../../../Middlewares/ST/STM32_WPAN/mac_802_15_4/core/inc",
+                  "-I../../STM32_WPAN/App",
+                  "-I../../../../../../../Middlewares/ST/STM32_WPAN",
+                  "-I../../../../../../../Drivers/BSP/P-NUCLEO-WB55.Nucleo",
+                  "-I../../STM32_WPAN/Target",
+                  "-I../../../../../../../Drivers/STM32WBxx_HAL_Driver/Inc",
+                  "-I../../../../../../../Middlewares/ST/STM32_WPAN/utilities",
+                  "-I../../../../../../../Drivers/CMSIS/Include",
+                  "-Os",
+                  "-ffunction-sections",
+                  "-fdata-sections",
+                  "-Wall",
+                  "-fstack-usage",
+                  "-fcyclomatic-complexity"
+              ]
+            },
+            {
+              "type": "cpp_compiler",
+              "options": {
+                      "option.languagestandard": "-std=gnu++14",
+                      "option.optimization.level": "-Os",
+                      "option.ffunction": "-ffunction-sections",
+                      "option.fdata": "-fdata-sections",
+                      "option.noexceptions": "-fno-exceptions",
+                      "option.nortti": "-fno-rtti",
+                      "option.nousecxaatexit": "-fno-use-cxa-atexit",
+                      "option.warnings.all": "-Wall",
+                      "option.fstackusage": "-fstack-usage",
+                      "option.cyclomaticcomplexity": "-fcyclomatic-complexity"
+              },
+              "flags": [
+                  "-mfpu=fpv4-sp-d16",
+                  "-mfloat-abi=hard",
+                  "-mthumb",
+                  "--specs=nano.specs",
+                  "-mcpu=cortex-m4",
+                  "-std=gnu++14",
+                  "-Os",
+                  "-ffunction-sections",
+                  "-fdata-sections",
+                  "-fno-exceptions",
+                  "-fno-rtti",
+                  "-fno-use-cxa-atexit",
+                  "-Wall",
+                  "-fstack-usage",
+                  "-fcyclomatic-complexity"
+              ]
+            },
+            {
+              "type": "c_linker",
+              "options": {
+                      "option.script": "-T\"/home/atta/STM32WB-Sniffer/firmware/Projects/P-NUCLEO-WB55.Nucleo/Applications/Mac_802_15_4/802_15_4_Sniffer/STM32CubeIDE/STM32WB55RGVX_FLASH.ld\"",
+                      "option.systemcalls": "--specs=nosys.specs",
+                      "option.map": "-Wl,-Map=\"802_15_4_Sniffer.map\"",
+                      "option.gcsections": "-Wl,--gc-sections",
+                      "option.static": "-static",
+                      "option.generate.secure.lib": "-Wl,--cmse-implib -Wl,--out-implib=./secure_nsclib.o",
+                      "option.libmath": "-Wl,--start-group -lc -lm -Wl,--end-group"
+              },
+              "flags": [
+                  "-mfpu=fpv4-sp-d16",
+                  "-mfloat-abi=hard",
+                  "-mthumb",
+                  "--specs=nano.specs",
+                  "-mcpu=cortex-m4",
+                  "-T\"/home/atta/STM32WB-Sniffer/firmware/Projects/P-NUCLEO-WB55.Nucleo/Applications/Mac_802_15_4/802_15_4_Sniffer/STM32CubeIDE/STM32WB55RGVX_FLASH.ld\"",
+                  "--specs=nosys.specs",
+                  "-Wl,-Map=\"802_15_4_Sniffer.map\"",
+                  "-Wl,--gc-sections",
+                  "-static"
+              ]
+            },
+            {
+              "type": "cpp_linker",
+              "options": {
+                      "option.script": "-T\"/home/atta/STM32WB-Sniffer/firmware/Projects/P-NUCLEO-WB55.Nucleo/Applications/Mac_802_15_4/802_15_4_Sniffer/STM32CubeIDE/STM32WB55RGVX_FLASH.ld\"",
+                      "option.systemcalls": "--specs=nosys.specs",
+                      "option.map": "-Wl,-Map=\"802_15_4_Sniffer.map\"",
+                      "option.gcsections": "-Wl,--gc-sections",
+                      "option.static": "-static",
+                      "option.generate.secure.lib": "-Wl,--cmse-implib -Wl,--out-implib=./secure_nsclib.o",
+                      "option.libmath": "-Wl,--start-group -lc -lm -lstdc++ -lsupc++ -Wl,--end-group"
+              },
+              "flags": [
+                  "-mfpu=fpv4-sp-d16",
+                  "-mfloat-abi=hard",
+                  "-mthumb",
+                  "--specs=nano.specs",
+                  "-mcpu=cortex-m4",
+                  "-T\"/home/atta/STM32WB-Sniffer/firmware/Projects/P-NUCLEO-WB55.Nucleo/Applications/Mac_802_15_4/802_15_4_Sniffer/STM32CubeIDE/STM32WB55RGVX_FLASH.ld\"",
+                  "--specs=nosys.specs",
+                  "-Wl,-Map=\"802_15_4_Sniffer.map\"",
+                  "-Wl,--gc-sections",
+                  "-static"
+              ]
+            },
+            {
+              "type": "c_archiver",
+              "options": {
+                      "option.replace": "-r"
+              },
+              "flags": [
+                  "-mfpu=fpv4-sp-d16",
+                  "-mfloat-abi=hard",
+                  "-mthumb",
+                  "--specs=nano.specs",
+                  "-mcpu=cortex-m4",
+                  "-r"
+              ]
+            }
+        ]
+    }
+  ]
+}
