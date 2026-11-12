@@ -45,7 +45,7 @@
 #define HOST_SYS_SUBEVTCODE_READY        (HOST_SYS_SUBEVTCODE_BASE + 0U)
 #define POOL_SIZE (CFG_TL_EVT_QUEUE_LENGTH * 4U * DIVC(( sizeof(TL_PacketHeader_t) + TL_EVENT_FRAME_SIZE ), 4U))
 
-/* Section specific to button management using UART */
+/* Section specific to management using UART */
 static void RxUART_Init(void);
 static void RxCpltCallback(void);
 static void UartCmdExecute(void);
@@ -91,7 +91,6 @@ size_t DbgTraceWrite(int handle, const unsigned char * buf, size_t bufSize);
 /* Private function prototypes -----------------------------------------------*/
 static void appe_Tl_Init(void);
 static void Led_Init(void);
-static void Button_Init(void);
 static void Wait_Getting_Ack_From_RFCore(void);
 static void Receive_Ack_From_RFCore(void);
 static void Receive_Notification_From_RFCore(void);
@@ -356,7 +355,6 @@ void MX_APPE_Init(void)
   Init_Debug();
 
   Led_Init();
-  Button_Init();
   RxUART_Init();
 
 /* USER CODE END APPE_Init_1 */
@@ -413,18 +411,6 @@ static void Led_Init( void )
   BSP_LED_Init(LED_GREEN);
   BSP_LED_Init(LED_RED);
 #endif
-  return;
-}
-
-static void Button_Init( void )
-{
-#if (CFG_BUTTON_SUPPORTED == 1U)
-  /* Button Initialization */
-  BSP_PB_Init(BUTTON_SW1, BUTTON_MODE_EXTI);
-  BSP_PB_Init(BUTTON_SW2, BUTTON_MODE_EXTI);
-  BSP_PB_Init(BUTTON_SW3, BUTTON_MODE_EXTI);
-#endif /* (CFG_BUTTON_SUPPORTED == 1U) */
-
   return;
 }
 

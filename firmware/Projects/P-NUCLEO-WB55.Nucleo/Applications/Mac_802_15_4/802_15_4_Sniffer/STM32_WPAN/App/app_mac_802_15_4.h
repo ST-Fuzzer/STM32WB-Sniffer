@@ -64,9 +64,6 @@ typedef enum
   CFG_TASK_MSG_FROM_RF_CORE, 
   CFG_TASK_SYSTEM_HCI_ASYNCH_EVT,
   CFG_TASK_DATA_POOL,
-  CFG_TASK_BUTTON_1,
-  CFG_TASK_BUTTON_2,
-  CFG_TASK_BUTTON_3,
   CFG_TASK_SET_CHANNEL,
   CFG_TASK_NBR,  /**< Shall be last in the list */
 } CFG_IdleTask_Id_t;
@@ -78,10 +75,7 @@ typedef enum
   CFG_SCH_PRIO_NBR,
 } CFG_SCH_Prio_Id_t;
 
-#define TASK_SETUP                         (1U << CFG_TASK_SETUP)
-#define TASK_BUTTON_1                    (1U << CFG_TASK_BUTTON_1)
-#define TASK_BUTTON_2                    (1U << CFG_TASK_BUTTON_2)
-#define TASK_BUTTON_3                    (1U << CFG_TASK_BUTTON_3)
+#define TASK_SETUP                       (1U << CFG_TASK_SETUP)
 #define TASK_DATA_POOL                   (1U << CFG_TASK_DATA_POOL)
 #define TASK_MSG_FROM_RF_CORE            (1U << CFG_TASK_MSG_FROM_RF_CORE)
 
@@ -163,9 +157,6 @@ typedef enum
 void APP_MAC_802_15_4_Init( APP_MAC_802_15_4_InitMode_t InitMode, TL_CmdPacket_t* pCmdBuffer);
 void APP_MAC_802_15_4_Error(uint32_t ErrId, uint32_t ErrCode);
 void APP_MAC_802_15_4_SetupTask(void);
-void APPE_Button1Action(void);
-void APPE_Button2Action(void);
-void APPE_Button3Action(void);
 void APP_Init(void);
 void APP_MAC_802_15_4_poll(void);
 void APP_MAC_802_15_4_Association(void);

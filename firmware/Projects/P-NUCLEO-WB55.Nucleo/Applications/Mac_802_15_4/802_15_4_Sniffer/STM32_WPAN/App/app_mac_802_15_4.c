@@ -147,35 +147,6 @@ static void SendTimerCallback(void)
 }
 
 /* USER CODE BEGIN FD*/
-void APPE_Button1Action(void)
-{
-  /* Program timer which send a data to the coordinator every 5s */
-  APP_MAC_802_15_4_poll();
-  if (!enablePollTimer) {
-    enablePollTimer = 1;
-    HW_TS_Start(TS_ID1, HW_TS_SERVER_5S_NB_TICKS);
-  }else{
-    enablePollTimer = 0;
-    HW_TS_Stop(TS_ID1);
-  }
-}
-
-void APPE_Button2Action(void)
-{
-  /* Send data in broadcast */
-  APP_MAC_802_15_4_SendData_broacast("Node MAC APP - Data In Broadcast\0");
-}
-
-void APPE_Button3Action(void)
-{
-  /* Disassociation with the coordinator */
-  if (deviceAssociated){
-    APP_MAC_802_15_4_Disassociation();
-  }else{
-   APP_DBG("Node MAC APP - This device is not associated\0");
-  }
-
-}
 
 /* Functions Definition ------------------------------------------------------*/
 void APP_MAC_802_15_4_Init( APP_MAC_802_15_4_InitMode_t InitMode, TL_CmdPacket_t* pCmdBuffer)
@@ -194,9 +165,6 @@ void APP_MAC_802_15_4_Init( APP_MAC_802_15_4_InitMode_t InitMode, TL_CmdPacket_t
   UTIL_SEQ_RegTask( 1<<CFG_TASK_MSG_FROM_RF_CORE, UTIL_SEQ_RFU, APP_ENTRY_ProcessMsgFromRFCoreTask);//Use for IPCC
 
   UTIL_SEQ_RegTask( 1<<CFG_TASK_SETUP, UTIL_SEQ_RFU, APP_MAC_802_15_4_SetupTask); //Use for mac setup
-  UTIL_SEQ_RegTask( 1<<CFG_TASK_BUTTON_1, UTIL_SEQ_RFU, APPE_Button1Action); // Button 1
-  UTIL_SEQ_RegTask( 1<<CFG_TASK_BUTTON_2, UTIL_SEQ_RFU, APPE_Button2Action); // Button 2
-  UTIL_SEQ_RegTask( 1<<CFG_TASK_BUTTON_3, UTIL_SEQ_RFU, APPE_Button3Action); // Button 3
   UTIL_SEQ_RegTask( 1<<CFG_TASK_DATA_POOL, UTIL_SEQ_RFU, APP_MAC_802_15_4_poll); // Data pool task
   UTIL_SEQ_RegTask( 1<<CFG_TASK_SET_CHANNEL, UTIL_SEQ_RFU, APP_MAC_802_15_4_SetChannelTask);
 

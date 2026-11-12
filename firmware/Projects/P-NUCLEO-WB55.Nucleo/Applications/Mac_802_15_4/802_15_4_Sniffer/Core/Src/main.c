@@ -217,32 +217,6 @@ static void MX_IPCC_Init(void)
 }
 
 /**
-  * @brief EXTI line detection callback.
-  * @param GPIO_Pin: Specifies the pins connected EXTI line
-  * @retval None
-  */
-void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
-{
-  switch(GPIO_Pin)
-  {
-    case BUTTON_SW1_PIN:
-      APP_DBG("Node MAC APP - Button 1 pressed\0");
-      UTIL_SEQ_SetTask( 1<< CFG_TASK_BUTTON_1, CFG_SCH_PRIO_0 );
-      break;
-     case BUTTON_SW2_PIN:
-      APP_DBG("Node MAC APP - Button 2 pressed\0");
-      UTIL_SEQ_SetTask( 1<< CFG_TASK_BUTTON_2, CFG_SCH_PRIO_0 );
-      break;
-    case BUTTON_SW3_PIN:
-      APP_DBG("Node MAC APP - Button 3 pressed\0");
-      UTIL_SEQ_SetTask( 1<< CFG_TASK_BUTTON_3, CFG_SCH_PRIO_0 );
-      break;
-    default:
-      break;
-  }
-}
-
-/**
   * @brief RTC Initialization Function
   * @param None
   * @retval None
