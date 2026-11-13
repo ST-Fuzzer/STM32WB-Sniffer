@@ -81,6 +81,7 @@
 
 #define CFG_HW_USART1_ENABLED                  1
 #define CFG_HW_USART1_DMA_TX_SUPPORTED         1
+#define CFG_HW_USART1_DMA_RX_SUPPORTED         1
 
 #if(CFG_HW_LPUART1_ENABLED == 1)
 /**
@@ -185,6 +186,16 @@
 #define CFG_HW_USART1_TX_DMA_CHANNEL          DMA2_Channel4
 #define CFG_HW_USART1_TX_DMA_IRQn             DMA2_Channel4_IRQn
 #define CFG_HW_USART1_DMA_TX_IRQHandler       DMA2_Channel4_IRQHandler
+
+#if(CFG_HW_USART1_DMA_RX_SUPPORTED == 1)
+#define CFG_HW_USART1_DMA_RX_PREEMPTPRIORITY  0x0F
+#define CFG_HW_USART1_DMA_RX_SUBPRIORITY      0
+
+#define CFG_HW_USART1_RX_DMA_REQ              DMA_REQUEST_USART1_RX
+#define CFG_HW_USART1_RX_DMA_CHANNEL          DMA2_Channel5
+#define CFG_HW_USART1_RX_DMA_IRQn             DMA2_Channel5_IRQn
+#define CFG_HW_USART1_DMA_RX_IRQHandler       DMA2_Channel5_IRQHandler
+#endif
 #endif
 #endif
 

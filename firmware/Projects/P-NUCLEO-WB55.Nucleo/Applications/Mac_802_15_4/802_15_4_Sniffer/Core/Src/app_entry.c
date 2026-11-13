@@ -18,6 +18,7 @@
 
 
 /* Includes ------------------------------------------------------------------*/
+#include <stdint.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -47,16 +48,17 @@
 
 /* Section specific to management using UART */
 static void RxUART_Init(void);
-static void RxCpltCallback(void);
+static void UartRxEvent(uint16_t pos);
 static void UartCmdExecute(void);
 static void ProcessChar(uint8_t rxChar);
 
 #define C_SIZE_CMD_STRING               256U
-#define RX_BUFFER_SIZE          8U
+
+/* CMD Commands */
+#define CMD_SET_CHANNEL                 "Set_channel"
 
 extern RTC_HandleTypeDef hrtc;
 extern UART_HandleTypeDef huart1;
-static uint8_t aRxBuffer[RX_BUFFER_SIZE];
 EXTI_HandleTypeDef exti_handle;
 /* Global variables  -------------------------------------------------*/
 char CommandString[C_SIZE_CMD_STRING];
@@ -668,9 +670,34 @@ static void Receive_Notification_From_RFCore(void)
   UTIL_SEQ_SetTask(TASK_MSG_FROM_RF_CORE,CFG_SCH_PRIO_0);
 }
 
+#define RX_DMA_BUF_SIZE 64
+static uint8_t  rxDmaBuf[RX_DMA_BUF_SIZE];
+static uint16_t rxOldPos;
+
+static void UartRxEvent(uint16_t pos)
+{
+  pos %= RX_DMA_BUF_SIZE;                      /* full buffer reports 64 -> 0 */
+  while (rxOldPos != pos)
+  {
+    ProcessChar(rxDmaBuf[rxOldPos]);
+    if (++rxOldPos >= RX_DMA_BUF_SIZE) rxOldPos = 0;
+  }
+}
+
+void HAL_UART_ErrorCallback(UART_HandleTypeDef *huart)
+{
+  if (huart->Instance == USART1)               /* e.g. overrun: restart reception */
+  {
+    HAL_UART_AbortReceive(huart);
+    rxOldPos = 0;
+    HW_UART_Receive_DMA(hw_uart1, rxDmaBuf, RX_DMA_BUF_SIZE, UartRxEvent);
+  }
+}
+
 static void RxUART_Init(void)
 {
-  HW_UART_Receive_IT(CFG_CLI_UART, aRxBuffer, 1U, RxCpltCallback);
+  rxOldPos = 0;
+  HW_UART_Receive_DMA(hw_uart1, rxDmaBuf, RX_DMA_BUF_SIZE, UartRxEvent);
 }
 
 static void ProcessChar(uint8_t rxChar)
@@ -700,46 +727,32 @@ static void ProcessChar(uint8_t rxChar)
   }
 }
 
-static void RxCpltCallback(void)
-{
-  ProcessChar(aRxBuffer[0]);
-
-  while (__HAL_UART_GET_FLAG(&huart1, UART_FLAG_RXNE))
-  {
-    uint8_t extraChar = (uint8_t)(huart1.Instance->RDR & 0xFF);
-    ProcessChar(extraChar);
-  }
-
-  if (__HAL_UART_GET_FLAG(&huart1, UART_FLAG_ORE))
-  {
-    __HAL_UART_CLEAR_OREFLAG(&huart1);
-  }
-
-  HW_UART_Receive_IT(CFG_CLI_UART, aRxBuffer, 1U, RxCpltCallback);
-}
-
 static void UartCmdExecute(void)
 {
-  if (CommandString[0] >= '0' && CommandString[0] <= '9')
+  if (strncmp(CommandString, CMD_SET_CHANNEL, sizeof(CMD_SET_CHANNEL) - 1) == 0)
   {
-    uint16_t channel = 0;
-    uint8_t i = 0;
+    const char *p = CommandString + sizeof(CMD_SET_CHANNEL) - 1;
+    while (*p == ' ') ++p;
+    
+    uint16_t ch = 0;
+    uint8_t digits = 0;
 
-    while (CommandString[i] >= '0' && CommandString[i] <= '9')
+    while (*p >= '0' && *p <= '9' && digits < 3)
     {
-      channel = channel * 10 + (CommandString[i] - '0');
-      i++;
+      ch = ch * 10 + (*p - '0');
+      ++digits;
+      ++p;
     }
 
-    if (CommandString[i] != '\0' || channel < 11 || channel > 26)
+    if (digits != 2 || *p != '\0' || ch < 11 || ch > 26)
     {
       APP_DBG("Invalid channel: %s", CommandString);
     }
     else
     {
-      g_PendingChannel = (uint8_t)channel;
+      g_PendingChannel = (uint8_t)ch;
       UTIL_SEQ_SetTask(1U << 15, CFG_SCH_PRIO_0);
-      APP_DBG("Switching to Channel %d", channel);
+      APP_DBG("Switching to Channel %d", ch);
     }
   }
   else
@@ -753,23 +766,5 @@ static void Task_ChangeChannel(void)
   if (g_PendingChannel >= 11 && g_PendingChannel <= 26)
   {
     APP_MAC_802_15_4_SetChannel(g_PendingChannel);
-  }
-}
-
-void HAL_UART_ErrorCallback(UART_HandleTypeDef *huart)
-{
-  if (huart->Instance == USART1)
-  {
-    while (__HAL_UART_GET_FLAG(huart, UART_FLAG_RXNE))
-    {
-      uint8_t salvagedChar = (uint8_t)(huart->Instance->RDR & 0xFF);
-      ProcessChar(salvagedChar);
-    }
-
-    __HAL_UART_CLEAR_OREFLAG(huart);
-    __HAL_UART_CLEAR_NEFLAG(huart);
-    __HAL_UART_CLEAR_FEFLAG(huart);
-
-    HW_UART_Receive_IT(CFG_CLI_UART, aRxBuffer, 1U, RxCpltCallback);
   }
 }

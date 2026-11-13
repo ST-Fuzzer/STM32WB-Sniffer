@@ -20,6 +20,12 @@
 /* Includes ------------------------------------------------------------------*/
 #include "app_common.h"
 #include "hw_conf.h"
+#include "hw_if.h"
+#include "stm32wbxx_hal_def.h"
+#include "stm32wbxx_hal_dma.h"
+#include "stm32wbxx_hal_uart.h"
+#include "stm32wbxx_hal_uart_ex.h"
+#include <stdint.h>
 
 /* Macros --------------------------------------------------------------------*/
 #define HW_UART_INIT(__HANDLE__, __USART_BASE__)                                                \
@@ -124,14 +130,48 @@
             HAL_NVIC_EnableIRQ(CFG_HW_##__USART_BASE__##_TX_DMA_IRQn);                          \
         } while(0)
 
+#define HW_UART_MSP_RX_DMA_INIT(__HANDLE__, __USART_BASE__)                                     \
+        do{                                                                                     \
+            /* Configure the DMA handler for Reception process */                               \
+            /* Enable DMA clock */                                                              \
+            CFG_HW_##__USART_BASE__##_DMA_CLK_ENABLE();                                         \
+            /* Enable DMA MUX clock */                                                          \
+            CFG_HW_##__USART_BASE__##_DMAMUX_CLK_ENABLE();                                      \
+                                                                                                \
+            HW_hdma_##__HANDLE__##_rx.Instance                 = CFG_HW_##__USART_BASE__##_RX_DMA_CHANNEL; \
+            HW_hdma_##__HANDLE__##_rx.Init.Request             = CFG_HW_##__USART_BASE__##_RX_DMA_REQ; \
+            HW_hdma_##__HANDLE__##_rx.Init.Direction           = DMA_PERIPH_TO_MEMORY;          \
+            HW_hdma_##__HANDLE__##_rx.Init.PeriphInc           = DMA_PINC_DISABLE;              \
+            HW_hdma_##__HANDLE__##_rx.Init.MemInc              = DMA_MINC_ENABLE;               \
+            HW_hdma_##__HANDLE__##_rx.Init.PeriphDataAlignment = DMA_PDATAALIGN_BYTE;           \
+            HW_hdma_##__HANDLE__##_rx.Init.MemDataAlignment    = DMA_MDATAALIGN_BYTE;           \
+            HW_hdma_##__HANDLE__##_rx.Init.Mode                = DMA_CIRCULAR;                  \
+            HW_hdma_##__HANDLE__##_rx.Init.Priority            = DMA_PRIORITY_HIGH;             \
+                                                                                                \
+            HAL_DMA_Init(&HW_hdma_##__HANDLE__##_rx);                                           \
+                                                                                                \
+            /* Associate the initialized DMA handle to the UART handle */                       \
+            __HAL_LINKDMA(huart, hdmarx, HW_hdma_##__HANDLE__##_rx);                            \
+                                                                                                \
+            /* NVIC configuration for DMA transfer complete interrupt  */                       \
+            HAL_NVIC_SetPriority(CFG_HW_##__USART_BASE__##_RX_DMA_IRQn, CFG_HW_##__USART_BASE__##_DMA_RX_PREEMPTPRIORITY, CFG_HW_##__USART_BASE__##_DMA_RX_SUBPRIORITY); \
+            HAL_NVIC_EnableIRQ(CFG_HW_##__USART_BASE__##_RX_DMA_IRQn);                          \
+        } while(0)
+
 /* Variables ------------------------------------------------------------------*/
 #if (CFG_HW_USART1_ENABLED == 1)
 UART_HandleTypeDef huart1 = {0};
 #if (CFG_HW_USART1_DMA_TX_SUPPORTED == 1)
 DMA_HandleTypeDef HW_hdma_huart1_tx ={0};
 #endif
+#if (CFG_HW_USART1_DMA_RX_SUPPORTED == 1)
+DMA_HandleTypeDef HW_hdma_huart1_rx ={0};
+#endif
 void (*HW_huart1RxCb)(void);
 void (*HW_huart1TxCb)(void);
+#if (CFG_HW_USART1_DMA_RX_SUPPORTED == 1)
+void (*HW_huart1RxEvtCb)(uint16_t);
+#endif
 #endif
 
 #if (CFG_HW_LPUART1_ENABLED == 1)
@@ -187,6 +227,50 @@ void HW_UART_Receive_IT(hw_uart_id_t hw_uart_id, uint8_t *p_data, uint16_t size,
   }
 
   return;
+}
+
+hw_status_t HW_UART_Receive_DMA(hw_uart_id_t hw_uart_id, uint8_t *p_data, uint16_t size, void (*cb)(uint16_t))
+{
+  HAL_StatusTypeDef hal_status = HAL_OK;
+  hw_status_t hw_status = hw_uart_ok;
+
+  switch (hw_uart_id)
+  {
+#if (CFG_HW_USART1_DMA_RX_SUPPORTED == 1)
+    case hw_uart1:
+      HW_huart1RxEvtCb = cb;
+      huart1.Instance = USART1;
+      hal_status = HAL_UARTEx_ReceiveToIdle_DMA(&huart1, p_data, size);
+      break;
+#endif
+    default:
+      hal_status = HAL_ERROR;
+      break;
+  }
+
+  switch (hal_status)
+  {
+    case HAL_OK:
+      hw_status = hw_uart_ok;
+      break;
+
+    case HAL_ERROR:
+      hw_status = hw_uart_error;
+      break;
+
+    case HAL_BUSY:
+      hw_status = hw_uart_busy;
+      break;
+
+    case HAL_TIMEOUT:
+      hw_status = hw_uart_to;
+      break;
+
+    default:
+      break;
+  }
+
+  return hw_status;
 }
 
 void HW_UART_Transmit_IT(hw_uart_id_t hw_uart_id, uint8_t *p_data, uint16_t size,  void (*cb)(void))
@@ -347,9 +431,14 @@ void HW_UART_DMA_Interrupt_Handler(hw_uart_id_t hw_uart_id)
 {
   switch (hw_uart_id)
   {
-#if (CFG_HW_USART1_DMA_TX_SUPPORTED == 1)
+#if (CFG_HW_USART1_DMA_TX_SUPPORTED == 1) || (CFG_HW_USART1_DMA_RX_SUPPORTED == 1)
     case hw_uart1:
+#if (CFG_HW_USART1_DMA_TX_SUPPORTED == 1)
       HAL_DMA_IRQHandler(huart1.hdmatx);
+#endif
+#if (CFG_HW_USART1_DMA_RX_SUPPORTED == 1)
+      HAL_DMA_IRQHandler(huart1.hdmarx);
+#endif
       break;
 #endif
 
@@ -383,6 +472,9 @@ void HAL_UART_MspInit(UART_HandleTypeDef *huart)
       HW_UART_MSP_UART_INIT( huart1, USART1 );
 #if (CFG_HW_USART1_DMA_TX_SUPPORTED == 1)
       HW_UART_MSP_TX_DMA_INIT( huart1, USART1 );
+#endif
+#if (CFG_HW_USART1_DMA_RX_SUPPORTED == 1)
+      HW_UART_MSP_RX_DMA_INIT( huart1, USART1 );
 #endif
     break;
 #endif
@@ -450,6 +542,26 @@ void HAL_UART_TxCpltCallback(UART_HandleTypeDef *huart)
       if(HW_lpuart1TxCb)
             {
               HW_lpuart1TxCb();
+            }
+    break;
+#endif
+
+    default:
+      break;
+  }
+
+  return;
+}
+
+void HAL_UARTEx_RxEventCallback(UART_HandleTypeDef *huart, uint16_t size)
+{
+  switch ((uint32_t)huart->Instance)
+  {
+#if (CFG_HW_USART1_DMA_RX_SUPPORTED == 1)
+    case (uint32_t)USART1:
+      if(HW_huart1RxEvtCb)
+            {
+              HW_huart1RxEvtCb(size);
             }
     break;
 #endif
