@@ -676,7 +676,6 @@ static uint16_t rxOldPos;
 
 static void UartRxEvent(uint16_t pos)
 {
-  APP_DBG("rx evt pos=%u old=%u", pos, rxOldPos);
   (void)pos;
   uint16_t head = RX_DMA_BUF_SIZE - __HAL_DMA_GET_COUNTER(huart1.hdmarx);
   head %= RX_DMA_BUF_SIZE;
