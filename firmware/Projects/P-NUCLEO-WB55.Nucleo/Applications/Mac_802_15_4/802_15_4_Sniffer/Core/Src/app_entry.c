@@ -720,22 +720,7 @@ static void RxCpltCallback(void)
 
 static void UartCmdExecute(void)
 {
-  if (strcmp((char const*)CommandString, "SW1") == 0)
-  {
-    exti_handle.Line = EXTI_LINE_4;
-    HAL_EXTI_GenerateSWI(&exti_handle);
-  }
-  else if (strcmp((char const*)CommandString, "SW2") == 0)
-  {
-    exti_handle.Line = EXTI_LINE_0;
-    HAL_EXTI_GenerateSWI(&exti_handle);
-  }
-  else if (strcmp((char const*)CommandString, "SW3") == 0)
-  {
-    exti_handle.Line = EXTI_LINE_1;
-    HAL_EXTI_GenerateSWI(&exti_handle);
-  }
-  else if (CommandString[0] >= '0' && CommandString[0] <= '9')
+  if (CommandString[0] >= '0' && CommandString[0] <= '9')
   {
     uint16_t channel = 0;
     uint8_t i = 0;
