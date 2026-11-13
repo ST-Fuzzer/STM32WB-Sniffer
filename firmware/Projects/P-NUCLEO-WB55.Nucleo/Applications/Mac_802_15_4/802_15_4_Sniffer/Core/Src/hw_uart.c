@@ -241,6 +241,8 @@ hw_status_t HW_UART_Receive_DMA(hw_uart_id_t hw_uart_id, uint8_t *p_data, uint16
       HW_huart1RxEvtCb = cb;
       huart1.Instance = USART1;
       hal_status = HAL_UARTEx_ReceiveToIdle_DMA(&huart1, p_data, size);
+      __HAL_DMA_DISABLE_IT(huart1.hdmarx, DMA_IT_HT);
+      __HAL_DMA_DISABLE_IT(huart1.hdmarx, DMA_IT_TC);
       break;
 #endif
     default:
