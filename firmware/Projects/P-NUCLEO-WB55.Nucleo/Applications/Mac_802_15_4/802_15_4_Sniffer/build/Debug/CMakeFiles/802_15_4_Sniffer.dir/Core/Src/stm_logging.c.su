@@ -1,0 +1,4 @@
+/home/atta/STM32WB-Sniffer/firmware/Projects/P-NUCLEO-WB55.Nucleo/Applications/Mac_802_15_4/802_15_4_Sniffer/Core/Src/stm_logging.c:68:24:logRegion	56	static
+/home/atta/STM32WB-Sniffer/firmware/Projects/P-NUCLEO-WB55.Nucleo/Applications/Mac_802_15_4/802_15_4_Sniffer/Core/Src/stm_logging.c:106:27:levelToString	16	static
+/home/atta/STM32WB-Sniffer/firmware/Projects/P-NUCLEO-WB55.Nucleo/Applications/Mac_802_15_4/802_15_4_Sniffer/Core/Src/stm_logging.c:134:24:logLevel	24	static
+/home/atta/STM32WB-Sniffer/firmware/Projects/P-NUCLEO-WB55.Nucleo/Applications/Mac_802_15_4/802_15_4_Sniffer/Core/Src/stm_logging.c:167:6:logApplication	280	static

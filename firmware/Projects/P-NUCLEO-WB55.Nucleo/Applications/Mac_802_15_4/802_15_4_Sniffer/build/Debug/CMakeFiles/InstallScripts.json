@@ -1,0 +1,7 @@
+{
+	"InstallScripts" : 
+	[
+		"/home/atta/STM32WB-Sniffer/firmware/Projects/P-NUCLEO-WB55.Nucleo/Applications/Mac_802_15_4/802_15_4_Sniffer/build/Debug/cmake_install.cmake"
+	],
+	"Parallel" : false
+}

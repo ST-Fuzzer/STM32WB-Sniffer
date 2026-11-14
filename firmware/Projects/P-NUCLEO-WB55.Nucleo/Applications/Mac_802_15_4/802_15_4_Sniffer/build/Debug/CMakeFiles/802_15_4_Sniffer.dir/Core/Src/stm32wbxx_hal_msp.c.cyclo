@@ -1,0 +1,8 @@
+/home/atta/STM32WB-Sniffer/firmware/Projects/P-NUCLEO-WB55.Nucleo/Applications/Mac_802_15_4/802_15_4_Sniffer/Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_rcc.h:2859:22:LL_RCC_SetRTCClockSource	1
+/home/atta/STM32WB-Sniffer/firmware/Projects/P-NUCLEO-WB55.Nucleo/Applications/Mac_802_15_4/802_15_4_Sniffer/Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_rcc.h:2883:22:LL_RCC_EnableRTC	1
+/home/atta/STM32WB-Sniffer/firmware/Projects/P-NUCLEO-WB55.Nucleo/Applications/Mac_802_15_4/802_15_4_Sniffer/Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_rcc.h:2893:22:LL_RCC_DisableRTC	1
+/home/atta/STM32WB-Sniffer/firmware/Projects/P-NUCLEO-WB55.Nucleo/Applications/Mac_802_15_4/802_15_4_Sniffer/Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h:939:22:LL_APB1_GRP1_EnableClock	1
+/home/atta/STM32WB-Sniffer/firmware/Projects/P-NUCLEO-WB55.Nucleo/Applications/Mac_802_15_4/802_15_4_Sniffer/Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h:1038:22:LL_APB1_GRP1_DisableClock	1
+/home/atta/STM32WB-Sniffer/firmware/Projects/P-NUCLEO-WB55.Nucleo/Applications/Mac_802_15_4/802_15_4_Sniffer/Core/Src/stm32wbxx_hal_msp.c:66:6:HAL_MspInit	1
+/home/atta/STM32WB-Sniffer/firmware/Projects/P-NUCLEO-WB55.Nucleo/Applications/Mac_802_15_4/802_15_4_Sniffer/Core/Src/stm32wbxx_hal_msp.c:85:6:HAL_RTC_MspInit	2
+/home/atta/STM32WB-Sniffer/firmware/Projects/P-NUCLEO-WB55.Nucleo/Applications/Mac_802_15_4/802_15_4_Sniffer/Core/Src/stm32wbxx_hal_msp.c:118:6:HAL_RTC_MspDeInit	2

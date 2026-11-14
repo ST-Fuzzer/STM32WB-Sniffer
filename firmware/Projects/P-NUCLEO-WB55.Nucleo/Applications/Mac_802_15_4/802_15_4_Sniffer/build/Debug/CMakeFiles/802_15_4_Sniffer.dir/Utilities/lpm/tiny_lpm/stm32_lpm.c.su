@@ -1,0 +1,6 @@
+/home/atta/STM32WB-Sniffer/firmware/Projects/P-NUCLEO-WB55.Nucleo/Applications/Mac_802_15_4/802_15_4_Sniffer/Utilities/lpm/tiny_lpm/stm32_lpm.c:121:6:UTIL_LPM_Init	4	static
+/home/atta/STM32WB-Sniffer/firmware/Projects/P-NUCLEO-WB55.Nucleo/Applications/Mac_802_15_4/802_15_4_Sniffer/Utilities/lpm/tiny_lpm/stm32_lpm.c:128:6:UTIL_LPM_DeInit	4	static
+/home/atta/STM32WB-Sniffer/firmware/Projects/P-NUCLEO-WB55.Nucleo/Applications/Mac_802_15_4/802_15_4_Sniffer/Utilities/lpm/tiny_lpm/stm32_lpm.c:132:6:UTIL_LPM_SetStopMode	32	static,ignoring_inline_asm
+/home/atta/STM32WB-Sniffer/firmware/Projects/P-NUCLEO-WB55.Nucleo/Applications/Mac_802_15_4/802_15_4_Sniffer/Utilities/lpm/tiny_lpm/stm32_lpm.c:157:6:UTIL_LPM_SetOffMode	32	static,ignoring_inline_asm
+/home/atta/STM32WB-Sniffer/firmware/Projects/P-NUCLEO-WB55.Nucleo/Applications/Mac_802_15_4/802_15_4_Sniffer/Utilities/lpm/tiny_lpm/stm32_lpm.c:182:17:UTIL_LPM_GetMode	24	static,ignoring_inline_asm
+/home/atta/STM32WB-Sniffer/firmware/Projects/P-NUCLEO-WB55.Nucleo/Applications/Mac_802_15_4/802_15_4_Sniffer/Utilities/lpm/tiny_lpm/stm32_lpm.c:215:6:UTIL_LPM_EnterLowPower	24	static,ignoring_inline_asm
